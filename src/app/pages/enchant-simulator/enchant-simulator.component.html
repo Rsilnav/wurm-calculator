@@ -1,6 +1,15 @@
+<details>
+  <summary>How to use this tool</summary>
+</details>
+
 <h1>Should I risk it?</h1>
+
 <h4 *ngIf="simulated">
-  <app-advisor-text [success]="success ?? 0" [intact]="intact ?? 0" [cracks]="cracks ?? 0" [shatters]="shatters ?? 0"></app-advisor-text>
+  <app-advisor-text [success]="success ?? 0"
+                    [intact]="intact ?? 0"
+                    [cracks]="cracks ?? 0"
+                    [shatters]="shatters ?? 0">
+  </app-advisor-text>
 </h4>
 
 <button (click)="simulate()" [disabled]="this.simulating">Simulate!</button>
@@ -37,8 +46,8 @@
       <input type="checkbox" id="benediction" value="true" formControlName="benediction">
       Benediction
     </label>
-<!--    <label for="numLinks">numLinks</label>-->
-<!--    <input id="numLinks" type="number" formControlName="numLinks">-->
+    <!--    <label for="numLinks">numLinks</label>-->
+    <!--    <input id="numLinks" type="number" formControlName="numLinks">-->
   </details>
 
 </form>
