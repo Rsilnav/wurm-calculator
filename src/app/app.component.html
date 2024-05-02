@@ -1,44 +1,12 @@
-<h1>Wurm Ore Quality Calculator</h1>
 
-<details>
-  <summary>How to use</summary>
-  <p>Find your coordinates using a command such as <i>/locate</i>.</p>
-  <p>Guess the size of the map, most servers will have
-    it announced somewhere. Odds are it is either 4096 or 2048.</p>
-  <p>Place all three values in the form below to know what the
-    Ore QL would be for that specific location.</p>
-  <p>The table below shows the QL of the surrounding tiles for the <i>target</i> tile.</p>
-</details>
+<header>
+  <nav>
+    <a routerLink="/home" routerLinkActive="current">Home</a>
+    <a routerLink="/ql" routerLinkActive="current">QL Calculator</a>
+    <a routerLink="/enchant" routerLinkActive="current">Enchanting Simulator</a>
+  </nav>
+</header>
 
-<details>
-  <summary>About this tool</summary>
-  <p>Wurm is an old school RPG game with a lot of depth. One of the
-    things you can do in the game is mine for ore. The quality of the
-    ore is determined by the location of the tile you are mining.</p>
-  <p>By reverse-engineering the code, I have been able to obtain the formula used to choose the QL of a tile on map
-    generation.</p>
-  <p>Beware that by using this tool, you may be spoiling yourself some of the fun of finding/analysing/prospecting high
-    quality ores.</p>
-</details>
-
-<form [formGroup]="oreLocationForm">
-  <label for="x">X Coordinate</label>
-  <input id="x" type="number" formControlName="x">
-  <label for="y">Y Coordinate</label>
-  <input id="y" type="number" formControlName="y">
-  <label for="mapSize">Map size</label>
-  <input id="mapSize" type="number" formControlName="mapSize">
-</form>
-
-<h4 *ngIf="oreQl != -1">Ore QL: {{ oreQl }}</h4>
-
-<table>
-  <tr *ngFor="let offsetY of offsets">
-    <td *ngFor="let offsetX of offsets"
-        [style.text-decoration]="(offsetX === offsetY && offsetY === 0) ? 'underline': ''">
-
-      <app-ql-number
-        [ql]="calculateQl(oreLocationForm.value.x! + offsetX, oreLocationForm.value.y! + offsetY, oreLocationForm.value.mapSize!)"></app-ql-number>
-    </td>
-  </tr>
-</table>
+<main>
+  <router-outlet></router-outlet>
+</main>

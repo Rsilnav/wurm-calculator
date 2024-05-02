@@ -1,0 +1,56 @@
+<h1>Should I risk it?</h1>
+<h4 *ngIf="simulated">
+  <app-advisor-text [success]="success ?? 0" [intact]="intact ?? 0" [cracks]="cracks ?? 0" [shatters]="shatters ?? 0"></app-advisor-text>
+</h4>
+
+<button (click)="simulate()" [disabled]="this.simulating">Simulate!</button>
+
+<pre *ngIf="simulated">
+<code>
+  Success: {{ success | percent: '.2' }}
+  Intact: {{ intact | percent: '.2' }}
+  Cracks: {{ cracks | percent: '.2' }}
+  Shatters: {{ shatters | percent: '.2' }}
+</code>
+</pre>
+
+<form [formGroup]="enchantingForm">
+  <label for="channeling">Channeling</label>
+  <input id="channeling" type="number" formControlName="channeling" min="0" max="100" step="0.01">
+  <label for="religion">Religion</label>
+  <input id="religion" type="number" formControlName="religion" min="0" max="100" step="0.01">
+  <label for="difficulty">Difficulty</label>
+  <input id="difficulty" type="number" formControlName="difficulty" min="0" max="100">
+  <label for="itemQL">Item QL</label>
+  <input id="itemQL" type="number" formControlName="itemQL" min="0" max="100" step="0.01">
+
+  <details>
+    <summary>Advanced controls</summary>
+    <label for="armourFactor">Armour Factor <i>(0.10 being a 10% bonus and -0.25 being a 25% penalty)</i></label>
+    <input id="armourFactor" type="number" formControlName="armourFactor" min="-1" max="1" step="0.01">
+    <label for="alignment">Alignment <i>(from -100 to 100)</i></label>
+    <input id="alignment" type="number" formControlName="alignment" min="-100" max="100" step="0.01">
+    <label for="deedBonus">Deed enchanting bonus <i>(0.05 being a 5% bonus)</i></label>
+    <input id="deedBonus" type="number" formControlName="deedBonus" min="0" max="100" step="0.01">
+
+    <label>
+      <input type="checkbox" id="benediction" value="true" formControlName="benediction">
+      Benediction
+    </label>
+<!--    <label for="numLinks">numLinks</label>-->
+<!--    <input id="numLinks" type="number" formControlName="numLinks">-->
+  </details>
+
+</form>
+
+<section>
+  <h2>How to use this</h2>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+  <p>Blah Blah Blah</p>
+</section>

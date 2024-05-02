@@ -10,18 +10,18 @@ import {Component, Input} from '@angular/core';
 export class QlNumberComponent {
   @Input() ql: number = 0;
 
-  getColoredQl(ql: number) {
-    if (ql < 20) {
+  getColoredQl() {
+    if (this.ql < 20) {
       return 'grey';
-    } else if (ql <= 29) {
+    } else if (this.ql <= 29) {
       return 'red';
-    } else if (ql <= 39) {
+    } else if (this.ql <= 39) {
       return 'orange';
-    } else if (ql <= 59) {
+    } else if (this.ql <= 59) {
       return 'lightgreen';
-    } else if (ql <= 79) {
+    } else if (this.ql <= 79) {
       return 'lightblue';
-    } else if (ql <= 94) {
+    } else if (this.ql <= 94) {
       return 'violet';
     } else {
       return 'gold';
