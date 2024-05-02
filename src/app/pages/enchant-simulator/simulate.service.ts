@@ -30,12 +30,12 @@ export class SimulateService {
     let cracks: number = 0;
     let shatters: number = 0;
 
-    const channeling = data.channeling ?? 0;
-    const religion = data.religion ?? 0;
-    const difficulty = data.difficulty ?? 0;
-    const itemQL = data.itemQL ?? 0;
+    const channeling = this.limit(data.channeling ?? 0, 0, 100);
+    const religion = this.limit(data.religion ?? 0, 0, 100);
+    const difficulty = this.limit(data.difficulty ?? 0, 0, 100);
+    const itemQL = this.limit(data.itemQL ?? 0, 0, 100);
     const armourFactor = data.armourFactor ?? 0;
-    const alignment = data.alignment ?? 0;
+    const alignment = this.limit(data.alignment ?? 0, -100, 100);
     const deedBonus = data.deedBonus ?? 0;
     const benediction = data.benediction ?? false;
     const numLinks = data.numLinks ?? 0;
@@ -45,11 +45,11 @@ export class SimulateService {
       const power = this.getPower(difficulty + numLinks * 3, bonus, religion, channeling);
       const trimmedPower = this.trimPower(power, benediction);
 
-      if (this.isSuccess(power, itemQL)) {
+      if (this.isSuccess(trimmedPower, itemQL)) {
         success += 1;
-      } else if (this.shallShatter(power, itemQL)) {
+      } else if (this.shallShatter(trimmedPower, itemQL)) {
         shatters += 1;
-      } else if (this.shallCrack(power, itemQL)) {
+      } else if (this.shallCrack(trimmedPower, itemQL)) {
         cracks += 1;
       } else {
         intact += 1;
@@ -157,5 +157,13 @@ export class SimulateService {
       bonus *= 1 + armourFactor;
     }
     return bonus
+  }
+
+  limit(n: number, min: number, max: number): number {
+    if (n > max)
+      return max;
+    if (n < min)
+      return min;
+    return n;
   }
 }

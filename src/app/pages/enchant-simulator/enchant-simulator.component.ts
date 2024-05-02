@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SimulateService} from "./simulate.service";
 import {NgIf, PercentPipe} from "@angular/common";
@@ -17,7 +17,7 @@ import {AdvisorTextComponent} from "@shared/advisor-text/advisor-text.component"
   templateUrl: './enchant-simulator.component.html',
   styleUrl: './enchant-simulator.component.css'
 })
-export class EnchantSimulatorComponent implements OnInit {
+export class EnchantSimulatorComponent {
   simulator = inject(SimulateService);
   enchantingForm = new FormGroup({
     // Basic
@@ -41,10 +41,6 @@ export class EnchantSimulatorComponent implements OnInit {
   simulating: boolean = false;
 
   simulated: boolean = false;
-
-  ngOnInit(): void {
-
-  }
 
   simulate() {
     const data: Partial<{
